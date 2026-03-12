@@ -113,6 +113,7 @@ class ValidateController extends AbstractController implements PublicControllerI
             }
             return new RedirectResponse($loginUrl);
         } catch (Throwable $e) {
+            error_log('[OrangeHRM Login Error] ' . get_class($e) . ': ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
             $this->getAuthUser()->addFlash(
                 AuthUser::FLASH_LOGIN_ERROR,
                 [
